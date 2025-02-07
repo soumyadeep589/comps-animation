@@ -103,21 +103,20 @@ const AccordionDemo: React.FC = () => (
 );
 
 // AccordionTrigger Component with animation
-const AccordionTrigger = React.forwardRef<
-  HTMLButtonElement,
-  AccordionTriggerProps
->(({ children, className, ...props }, forwardedRef) => (
-  <Accordion.Header className="AccordionHeader">
-    <Accordion.Trigger
-      className={classNames("AccordionTrigger", className)}
-      {...props}
-      ref={forwardedRef}
-    >
-      {children}
-      <ChevronDownIcon className="AccordionChevron" aria-hidden />
-    </Accordion.Trigger>
-  </Accordion.Header>
-));
+const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerProps>(
+    ({ children, className, ...props }, forwardedRef) => (
+        <Accordion.Header className="AccordionHeader">
+            <Accordion.Trigger
+                className={classNames("AccordionTrigger", className)}
+                {...props}
+                ref={forwardedRef}
+            >
+                {children}
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+            </Accordion.Trigger>
+        </Accordion.Header>
+    )
+);
 
 AccordionTrigger.displayName = "AccordionTrigger";
 
@@ -135,7 +134,7 @@ const AccordionContent = React.forwardRef<
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={animations.fade}
+      variants={animations.rotate}
       className="AccordionContentText"
     >
       {children}

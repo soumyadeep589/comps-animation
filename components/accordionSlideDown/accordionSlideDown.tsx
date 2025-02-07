@@ -106,39 +106,18 @@ const AccordionDemo: React.FC = () => (
 const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
   AccordionTriggerProps
->(({ children, className, ...props }, forwardedRef) => {
-  const [isOpen, setIsOpen] = React.useState(false); // Local state for animation control
-
-  return (
-    <Accordion.Header className="AccordionHeader">
-      <Accordion.Trigger
-        asChild
-        onClick={() => setIsOpen(!isOpen)} // Toggle state on click
-      >
-        <motion.button
-          className={classNames("AccordionTrigger", className)}
-          {...props}
-          ref={forwardedRef}
-          variants={animations} // Apply fade animation
-          initial="hidden"
-          animate={isOpen ? "visible" : "hidden"} // Animate based on trigger state
-          exit="hidden"
-          whileTap={{ scale: 0.95 }} // Scale down effect when clicked
-        >
-          {children}
-          <motion.span
-            className="AccordionChevron"
-            initial={false}
-            animate={{ rotate: isOpen ? 180 : 0 }} // Rotate the Chevron
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <ChevronDownIcon />
-          </motion.span>
-        </motion.button>
-      </Accordion.Trigger>
-    </Accordion.Header>
-  );
-});
+>(({ children, className, ...props }, forwardedRef) => (
+  <Accordion.Header className="AccordionHeader">
+    <Accordion.Trigger
+      className={classNames("AccordionTrigger", className)}
+      {...props}
+      ref={forwardedRef}
+    >
+      {children}
+      <ChevronDownIcon className="AccordionChevron" aria-hidden />
+    </Accordion.Trigger>
+  </Accordion.Header>
+));
 
 AccordionTrigger.displayName = "AccordionTrigger";
 

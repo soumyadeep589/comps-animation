@@ -135,7 +135,7 @@ const AccordionContent = React.forwardRef<
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={animations.fade}
+      variants={animations.scaleIn}
       className="AccordionContentText"
     >
       {children}
